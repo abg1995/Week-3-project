@@ -1,6 +1,6 @@
 //GAME LOGIC HERE!!!!!!!!!!!!
 
-function createDomElement(className){
+function createDomEl(className){
     const board = document.getElementById("board");
     const newEl = document.createElement("div");
     newEl.className = className;
@@ -8,26 +8,39 @@ function createDomElement(className){
     board.appendChild(newEl);
 
     return newEl; 
-
+}
 
 function drawElements (instance){
 
-    instance.domE
+    instance.domEl.style.side = instance.heightPos + "%";
+    instance.domEl.style.upDown = instance.widthPos + "%";
+
+    instance.domEl.style.width = instance.width + "%";
+    instance.domEl.style.height = instance.height + "%";
 }
 
-    document.onkeydown = function (event){
-             switch(event.keyCode) {
-               case 37:
-                     console.log("Left key is pressed.");
-                     break;
-                  case 38:
-                     console.log("Up key is pressed.");
-                    break;
-                  case 39:
-                     console.log("Right key is pressed.");
-                   break;
-                  case 40:
-                    console.log("Down key is pressed.");
-                     break;
-            }
-         }
+ const game = new Game (createDomEl, drawElements);
+ game.start();
+
+
+
+ document.addEventListener("keydown", function(event){
+
+    switch(event.key){
+        case "ArrowRight":
+            game.movePlayer("right")
+        break;
+        case "ArrowLeft":
+            game.movePlayer("left");
+           
+        break;
+        case "ArrowUp":
+            game.movePlayer("up");
+            console.log('pressed up arrows')
+            break;
+
+        case "ArrowDown":
+            game.movePlayer("down");
+            break;
+    }
+});
