@@ -4,17 +4,19 @@ class Game {
   constructor(create, draw) {
     this.player = null;
     this.draw = draw;
-    this.spaceArr = [];
+    this.asteroidArr = [];
     this.create = create;
     this.pointCounter = 0;
     this.timer = 0;
     this.meteorCounter = 0;
   }
 
-  start() {
+  start() {  //create and draw a player , still dont see a player tho....
     this.player = new Player();
     this.player.domEl = this.create("player");
     this.draw(this.player);
+
+
   }
 
   movingPlayer(direction) {
@@ -33,6 +35,12 @@ class Game {
     }
 
     this.draw(this.player);
+  }
+
+
+  gameOver() {
+    alert("game over :(");
+    location.reload();
   }
 }
 
@@ -76,6 +84,7 @@ class Meteors {
     this.heightPos = Math.floor(Math.random() * 90);
     this.height = Math.floor(5 + Math.random() * 10);
     this.width = Math.floor(5 + Math.random() * 10);
+    this.domEl = null;
   }
 
   moveLeft() {
