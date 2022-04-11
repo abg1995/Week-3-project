@@ -4,7 +4,7 @@ class Game {
   constructor(create, draw) {
     this.player = null;
     this.draw = draw;
-    this.asteroidArr = [];
+    this.meteorArr = [];
     this.create = create;
     this.pointCounter = 0;
     this.timer = 0;
@@ -19,7 +19,8 @@ class Game {
 
   }
 
-  movingPlayer(direction) {
+  movePlayer(direction) {
+
     if (direction === "up" && this.player.heightPos < 90) {
       this.player.moveUp();
       console.log("player is moving up");
@@ -33,7 +34,6 @@ class Game {
       this.player.moveLeft();
       console.log("player is moving left");
     }
-
     this.draw(this.player);
   }
 
@@ -55,25 +55,25 @@ class Player {
 
   moveUp() {
     if (this.heightPos < 90) {
-      this.heightPos += 3;
+      this.heightPos += 2.5;
     }
   }
 
   moveDown() {
     if (this.heightPos > 0) {
-      this.heightPos -= 3;
+      this.heightPos -= 2.5;
     }
   }
 
   moveLeft() {
     if (this.widthPos > 0) {
-      this.widthPos -= 5;
+      this.widthPos -= 2;
     }
   }
 
   moveRight() {
     if (this.width < 92) {
-      this.widthPos += 5;
+      this.widthPos += 2;
     }
   }
 }

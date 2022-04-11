@@ -11,9 +11,8 @@ function createDomEl(className) {
 }
 
 function drawElements(instance) {
-  instance.domEl.style.side = instance.heightPos + "%";
-  instance.domEl.style.upDown = instance.widthPos + "%";
-
+  instance.domEl.style.left = instance.widthPos + "%";
+  instance.domEl.style.bottom = instance.heightPos + "%";
   instance.domEl.style.width = instance.width + "%";
   instance.domEl.style.height = instance.height + "%";
 }
@@ -28,15 +27,24 @@ document.addEventListener("keydown", function (event) {
       break;
     case "ArrowLeft":
       game.movePlayer("left");
-
       break;
     case "ArrowUp":
       game.movePlayer("up");
-      console.log("pressed up arrows");
       break;
-
     case "ArrowDown":
       game.movePlayer("down");
+      break;
+    case "a":
+      game.movePlayer("left");
+      break;
+    case "w":
+      game.movePlayer("up");
+      break;
+    case "s":
+      game.movePlayer("down");
+      break;
+    case "d":
+      game.movePlayer("right");
       break;
   }
 });
