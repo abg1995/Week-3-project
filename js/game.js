@@ -39,7 +39,7 @@ class Game {
   }
 
   moveCharacter(direction) {
-    if (direction === "up" && this.character.heightPos < 90) {
+    if (direction === "up" && this.character.heightPos < 85) {
       this.character.moveUp();
       console.log("character is moving up");
     } else if (direction === "down" && this.character.heightPos > 0) {
@@ -117,8 +117,8 @@ class Meteor {
   constructor() {
     this.widthPos = 55;
     this.heightPos = Math.floor(Math.random() * 95);
-    this.height = 5;
-    this.width = 2.5;
+    this.height = 7;
+    this.width = 4;
     this.domEl = null;
   }
 
