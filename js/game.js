@@ -35,7 +35,7 @@ class Game {
          this.detectCollision(element);
         });
         this.meteorCounter++;
-      },80);
+      },40);
   }
 
   moveCharacter(direction) {
@@ -90,32 +90,32 @@ class Character {
 
   moveUp() {
     if (this.heightPos < 90) {
-      this.heightPos += 4;
+      this.heightPos += 3;
     }
   }
 
   moveDown() {
     if (this.heightPos > 0) {
-      this.heightPos -= 4;
+      this.heightPos -= 3;
     }
   }
 
   moveLeft() {
     if (this.widthPos > 0) {
-      this.widthPos -= 4;
+      this.widthPos -= 2;
     }
   }
 
   moveRight() {
     if (this.width < 92) {
-      this.widthPos += 4;
+      this.widthPos += 2;
     }
   }
 }
 
 class Meteor {
   constructor() {
-    this.widthPos = 55;
+    this.widthPos = 85;
     this.heightPos = Math.floor(Math.random() * 95);
     this.height = 7;
     this.width = 4;
