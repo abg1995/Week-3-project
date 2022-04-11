@@ -1,7 +1,7 @@
 //GAME LOGIC HERE!!!!!!!!!!!!
 
 function createDomEl(className) {
-  const board = document.getElementById("board");
+  const board = document.getElementById("container");
   const newEl = document.createElement("div");
   newEl.className = className;
 
@@ -11,10 +11,10 @@ function createDomEl(className) {
 }
 
 function drawElements(instance) {
-  instance.domEl.style.left = instance.widthPos + "%";
-  instance.domEl.style.bottom = instance.heightPos + "%";
-  instance.domEl.style.width = instance.width + "%";
-  instance.domEl.style.height = instance.height + "%";
+  instance.domEl.style.left = instance.widthPos + "vw";
+  instance.domEl.style.bottom = instance.heightPos + "vh";
+  instance.domEl.style.width = instance.width + "vw";
+  instance.domEl.style.height = instance.height + "vh";
 }
 
 const game = new Game(createDomEl, drawElements);
@@ -22,29 +22,17 @@ game.start();
 
 document.addEventListener("keydown", function (event) {
   switch (event.key) {
-    case "ArrowRight":
-      game.movePlayer("right");
-      break;
-    case "ArrowLeft":
-      game.movePlayer("left");
-      break;
-    case "ArrowUp":
-      game.movePlayer("up");
-      break;
-    case "ArrowDown":
-      game.movePlayer("down");
-      break;
     case "a":
-      game.movePlayer("left");
+      game.moveCharacter("left");
       break;
     case "w":
-      game.movePlayer("up");
+      game.moveCharacter("up");
       break;
     case "s":
-      game.movePlayer("down");
+      game.moveCharacter("down");
       break;
     case "d":
-      game.movePlayer("right");
+      game.moveCharacter("right");
       break;
   }
 });

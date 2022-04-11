@@ -2,7 +2,7 @@
 
 class Game {
   constructor(create, draw) {
-    this.player = null;
+    this.character = null;
     this.draw = draw;
     this.meteorArr = [];
     this.create = create;
@@ -12,10 +12,10 @@ class Game {
   }
 
   start() {
-    //create and draw a player , still dont see a player tho....
-    this.player = new Player();
-    this.player.domEl = this.create("player");
-    this.draw(this.player);
+    //create and draw a character , still
+    this.character = new Character();
+    this.character.domEl = this.create("character");
+    this.draw(this.character);
 
     // meteors creation
 
@@ -32,51 +32,59 @@ class Game {
           element.moveDown();
           element.moveLeft();
           this.draw(element);
-          // this.detectCollision(element);
+         this.detectCollision(element);
         });
         this.meteorCounter++;
-      },
-
-      80
-    );
+      },80);
   }
 
-  movePlayer(direction) {
-    if (direction === "up" && this.player.heightPos < 90) {
-      this.player.moveUp();
-      console.log("player is moving up");
-    } else if (direction === "down" && this.player.heightPos > 0) {
-      this.player.moveDown();
-      console.log("player is moving down");
-    } else if (direction === "right" && this.player.widthPos < 90) {
-      this.player.moveRight();
-      console.log("player is moving right");
-    } else if (direction === "left" && this.player.widthPos > 0) {
-      this.player.moveLeft();
-      console.log("player is moving left");
+  moveCharacter(direction) {
+    if (direction === "up" && this.character.heightPos < 90) {
+      this.character.moveUp();
+      console.log("character is moving up");
+    } else if (direction === "down" && this.character.heightPos > 0) {
+      this.character.moveDown();
+      console.log("character is moving down");
+    } else if (direction === "right" && this.character.widthPos < 90) {
+      this.character.moveRight();
+      console.log("character is moving right");
+    } else if (direction === "left" && this.character.widthPos > 0) {
+      this.character.moveLeft();
+      console.log("character is moving left");
     }
-    this.draw(this.player);
+    this.draw(this.character);
   }
+
+  detectCollision(meteor){
+    if(this.character.widthPos < meteor.widthPos + meteor.width && this.character.widthPos 
+      + this.character.width > meteor.widthPos && this.character.heightPos < meteor.heightPos
+      + meteor.height && this.character.height + this.character.heightPos > meteor.heightPos){
+        this.meteorArr.splice(this.meteorArr.indexOf(meteor), 1);
+        meteor.domEl.remove();
+        this.gameOver();
+      }
+  }
+
 
   deleteMeteors(meteor) {
     if (meteor.heightPos === 0) {
-      this.meteorArr.splice(this.meteorArr.indexOf(obstacle), 1);
+      this.meteorArr.splice(this.meteorArr.indexOf(meteor), 1);
       meteor.domEl.remove();
     }
   }
 
-  // gameOver() {
-  //   alert("game over :(");
-  //   location.reload();
-  // }
+   gameOver() {
+     alert("OH NO! YOU GOT DOWNED!!")
+     location.reload();
+    }
 }
 
-class Player {
+class Character {
   constructor() {
     this.heightPos = 50;
     this.widthPos = 0;
-    this.height = 5;
-    this.width = 8;
+    this.height = 16;
+    this.width = 9.7;
     this.domEl = null;
   }
 
@@ -107,10 +115,10 @@ class Player {
 
 class Meteor {
   constructor() {
-    this.widthPos = Math.floor(Math.random() * 95);
-    this.heightPos = 95;
+    this.widthPos = 55;
+    this.heightPos = Math.floor(Math.random() * 95);
     this.height = 5;
-    this.width = 5;
+    this.width = 2.5;
     this.domEl = null;
   }
 
@@ -124,5 +132,8 @@ class Meteor {
 }
 
 class Bonus {
+constructor(){
+  this.bonification = 100;
+}
   
 }
